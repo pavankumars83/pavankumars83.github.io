@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saahvan Solutions — Engineering Certainty. Maximizing Velocity.</title>
+<meta name="description" content="Tier 1 Technology & Architecture Advisory Services for enterprises, high-growth startups, and mid-market companies. We de-risk technology investments and build scalable digital foundations." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #0E0D0B;
+    --ink-2:      #16140F;
+    --bone:       #EDE6D6;
+    --bone-dim:   #B7B0A0;
+    --bone-faint: #6E6A60;
+    --rule:       rgba(237, 230, 214, 0.12);
+    --rule-soft:  rgba(237, 230, 214, 0.06);
+    --accent:     #D9612A;   /* burnt amber */
+    --accent-2:   #E8B259;   /* gilded */
+    --serif: "Fraunces", "Times New Roman", serif;
+    --sans:  "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  /* subtle grain texture */
+  body::before{
+    content:"";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  ::selection{ background: var(--accent); color: var(--ink); }
+
+  .wrap{
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 56px);
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(14, 13, 11, 0.72);
+    border-bottom: 1px solid var(--rule);
+  }
+  header.site .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .brand{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 18;
+  }
+  .brand .dot{
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    transform: translateY(-3px);
+  }
+  .brand .mark{ font-style: italic; font-variation-settings: "opsz" 14, "WONK" 1; }
+  nav.primary{
+    display: flex;
+    gap: clamp(18px, 3vw, 36px);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+  }
+  nav.primary a{ transition: color .25s ease; }
+  nav.primary a:hover{ color: var(--bone); }
+  .cta-btn{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--bone);
+    padding: 11px 18px;
+    border-radius: 999px;
+    transition: background .25s ease, transform .25s ease;
+    display: inline-block;
+  }
+  .cta-btn:hover{ background: var(--accent-2); transform: translateY(-1px); }
+  .cta-btn.ghost{
+    background: transparent;
+    color: var(--bone);
+    border: 1px solid var(--rule);
+  }
+  .cta-btn.ghost:hover{ border-color: var(--accent-2); color: var(--accent-2); transform: translateY(-1px); background: transparent; }
+
+  @media (max-width: 800px){
+    nav.primary{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    padding: clamp(72px, 12vh, 160px) 0 clamp(80px, 14vh, 180px);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .hero .meta-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    margin-bottom: clamp(40px, 7vh, 80px);
+  }
+  .hero .meta-row span:last-child{ color: var(--bone-dim); }
+  .hero h1{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(48px, 9vw, 132px);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+    margin-bottom: 8px;
+  }
+  .hero h1 .line-2{
+    display: block;
+    font-style: italic;
+    color: var(--accent-2);
+    font-variation-settings: "opsz" 144, "WONK" 1, "SOFT" 60;
+  }
+  .hero .lede{
+    margin-top: clamp(36px, 6vh, 56px);
+    max-width: 720px;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.5;
+    color: var(--bone-dim);
+    font-weight: 300;
+  }
+  .hero .lede strong{
+    color: var(--bone);
+    font-weight: 500;
+  }
+  .hero-actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 44px;
+  }
+  /* decorative crosshair */
+  .hero::after{
+    content:"";
+    position: absolute;
+    top: 60%; right: -2%;
+    width: clamp(300px, 40vw, 540px); aspect-ratio: 1/1;
+    background:
+      radial-gradient(circle at center, rgba(217,97,42,0.12), transparent 60%),
+      conic-gradient(from 45deg, transparent 0 88deg, var(--rule) 88deg 92deg, transparent 92deg 178deg, var(--rule) 178deg 182deg, transparent 182deg 268deg, var(--rule) 268deg 272deg, transparent 272deg 358deg, var(--rule) 358deg 360deg);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 0;
+    animation: spin 80s linear infinite;
+  }
+  @keyframes spin{ to { transform: rotate(360deg); } }
+  .hero > .wrap > *{ position: relative; z-index: 1; }
+
+  /* ---------- section heads ---------- */
+  .section{
+    padding: clamp(80px, 12vh, 140px) 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .section-head{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: clamp(20px, 4vw, 60px);
+    align-items: end;
+    margin-bottom: clamp(56px, 9vh, 96px);
+  }
+  .section-num{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--accent);
+  }
+  .section-title{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 100;
+    font-size: clamp(32px, 4.4vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+  }
+  .section-title em{
+    font-style: italic;
+    color: var(--accent-2);
+    font-variation-settings: "opsz" 100, "WONK" 1;
+  }
+  .section-sub{
+    grid-column: 2;
+    margin-top: 18px;
+    color: var(--bone-dim);
+    font-size: 16px;
+    max-width: 640px;
+    font-weight: 300;
+  }
+  @media (max-width: 700px){
+    .section-head{ grid-template-columns: 1fr; gap: 16px; }
+    .section-sub{ grid-column: 1; }
+  }
+
+  /* ---------- positioning section ---------- */
+  .positioning{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: clamp(20px, 4vw, 60px);
+  }
+  .positioning .label{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+  }
+  .positioning .body{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 60;
+    font-size: clamp(22px, 2.4vw, 34px);
+    line-height: 1.3;
+    color: var(--bone);
+    letter-spacing: -0.012em;
+    max-width: 920px;
+  }
+  .positioning .body span.hl{
+    color: var(--accent-2);
+    font-style: italic;
+    font-variation-settings: "opsz" 60, "WONK" 1;
+  }
+  @media (max-width: 700px){
+    .positioning{ grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  /* ---------- services grid ---------- */
+  .services{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .service{
+    background: var(--ink);
+    padding: clamp(32px, 4vw, 56px);
+    position: relative;
+    transition: background .35s ease;
+  }
+  .service:hover{ background: var(--ink-2); }
+  .service .num{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .service .num::after{
+    content:"";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .service h3{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 100;
+    font-size: clamp(26px, 2.4vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    margin-bottom: 18px;
+    color: var(--bone);
+  }
+  .service h3 em{
+    font-style: italic;
+    color: var(--accent-2);
+    font-variation-settings: "opsz" 100, "WONK" 1;
+  }
+  .service p.svc-blurb{
+    color: var(--bone-dim);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-weight: 300;
+    max-width: 48ch;
+  }
+  .service .deliverables-label{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    margin-bottom: 14px;
+  }
+  .service ul{
+    list-style: none;
+    border-top: 1px solid var(--rule);
+  }
+  .service li{
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    font-size: 14.5px;
+    color: var(--bone);
+    transition: padding-left .3s ease;
+  }
+  .service li:hover{ padding-left: 8px; color: var(--accent-2); }
+  .service li::before{
+    content: "→";
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 860px){
+    .services{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- engagement section ---------- */
+  .engage{
+    background: var(--ink-2);
+    border-bottom: 1px solid var(--rule);
+  }
+  .engage-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    margin-top: clamp(40px, 6vh, 60px);
+  }
+  .engage-card{
+    border: 1px solid var(--rule);
+    padding: clamp(28px, 3.5vw, 48px);
+    position: relative;
+    background: var(--ink);
+    transition: border-color .3s ease;
+  }
+  .engage-card:hover{ border-color: var(--accent); }
+  .engage-card .tag{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .engage-card .tag::before{
+    content:"";
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .engage-card h4{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 80;
+    font-size: clamp(26px, 2.2vw, 34px);
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    margin-bottom: 16px;
+    color: var(--bone);
+  }
+  .engage-card p{
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--bone-dim);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .engage-card .spec{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .engage-card .spec span{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--bone-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+  .objectivity{
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto clamp(40px, 6vh, 60px);
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 60;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.4;
+    color: var(--bone);
+    letter-spacing: -0.012em;
+  }
+  .objectivity em{
+    font-style: italic;
+    color: var(--accent-2);
+    font-variation-settings: "opsz" 60, "WONK" 1;
+  }
+  @media (max-width: 720px){
+    .engage-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- CTA / contact ---------- */
+  .contact{
+    padding: clamp(100px, 16vh, 180px) 0;
+    text-align: left;
+    position: relative;
+  }
+  .contact .stamp{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .contact h2{
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(40px, 7vw, 108px);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+    margin-bottom: 36px;
+    max-width: 14ch;
+  }
+  .contact h2 em{
+    font-style: italic;
+    color: var(--accent-2);
+    font-variation-settings: "opsz" 144, "WONK" 1, "SOFT" 60;
+  }
+  .contact-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .contact-row .email{
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--bone-dim);
+    letter-spacing: 0.04em;
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 4px;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .contact-row .email:hover{ color: var(--accent-2); border-color: var(--accent-2); }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top: 1px solid var(--rule);
+    padding: 40px 0 56px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+  }
+  footer .wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  footer .legal{ color: var(--bone-faint); }
+  footer .anchor{ display: flex; gap: 24px; }
+
+  /* ---------- reveal animation ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in{
+    opacity: 1;
+    transform: none;
+  }
+  .reveal.d1{ transition-delay: 0.08s; }
+  .reveal.d2{ transition-delay: 0.16s; }
+  .reveal.d3{ transition-delay: 0.24s; }
+  .reveal.d4{ transition-delay: 0.32s; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <span class="dot"></span>
+      Saahvan<span class="mark">Solutions</span>
+    </a>
+    <nav class="primary">
+      <a href="#advisory">Advisory</a>
+      <a href="#services">Services</a>
+      <a href="#engage">Engagement</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="cta-btn">Book a Sprint</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="meta-row reveal">
+      <span>Tier 1 — Technology & Architecture Advisory</span>
+      <span>Est. Saahvan Solutions Pvt. Ltd.</span>
+    </div>
+    <h1 class="reveal d1">
+      Engineering Certainty.
+      <span class="line-2">Maximizing Velocity.</span>
+    </h1>
+    <p class="lede reveal d2">
+      We bridge the gap between high-level business vision and complex software execution.
+      <strong>Saahvan's Tier 1 Advisory Services</strong> are designed for enterprises, high-growth startups, and mid-market companies seeking to de-risk technology investments, modernize legacy infrastructure, and build scalable digital foundations.
+    </p>
+    <div class="hero-actions reveal d3">
+      <a href="#engage" class="cta-btn">Strategic Scoping Sprint →</a>
+      <a href="#services" class="cta-btn ghost">View Capabilities</a>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section" id="advisory">
+  <div class="wrap">
+    <div class="positioning">
+      <div class="label">Mandate</div>
+      <p class="body reveal">
+        Our work begins where conventional consulting ends — at the
+        <span class="hl">architectural decisions</span> that determine
+        whether your platform scales gracefully or collapses under its own weight.
+        We eliminate bottlenecks before the first line of code is written.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">Capabilities — 01 / 04</div>
+      <div>
+        <h2 class="section-title">Four pillars of <em>technical leverage</em>.</h2>
+        <p class="section-sub">Each engagement begins with a diagnostic and ends with a blueprint your engineers can execute without ambiguity.</p>
+      </div>
+    </div>
+
+    <div class="services">
+
+      <article class="service reveal">
+        <div class="num">01 — Architecture</div>
+        <h3>Enterprise Architecture &amp; <em>System Design</em></h3>
+        <p class="svc-blurb">Resilient, highly available, and secure software architectures tailored to your long-term business goals. We eliminate architectural bottlenecks before code is written.</p>
+        <div class="deliverables-label">Core Deliverables</div>
+        <ul>
+          <li>Microservices &amp; Monolith-to-Distributed System Design</li>
+          <li>High-Throughput &amp; Low-Latency Data Architecture</li>
+          <li>API Strategy, Design, and Governance Frameworks</li>
+          <li>Technology Stack Selection &amp; Feasibility Analysis</li>
+        </ul>
+      </article>
+
+      <article class="service reveal d1">
+        <div class="num">02 — Cloud</div>
+        <h3>Cloud Strategy &amp; <em>Infrastructure Modernization</em></h3>
+        <p class="svc-blurb">We optimize your cloud presence to ensure absolute scalability, compliance, and cost-efficiency. Our strategies turn infrastructure into a competitive advantage.</p>
+        <div class="deliverables-label">Core Deliverables</div>
+        <ul>
+          <li>Multi-Cloud &amp; Hybrid-Cloud Migration Roadmaps (AWS, Azure, GCP)</li>
+          <li>FinOps &amp; Cloud Cost Optimization Audits</li>
+          <li>Infrastructure-as-Code (IaC) &amp; Automated CI/CD DevOps Blueprinting</li>
+          <li>Disaster Recovery (DR) &amp; Business Continuity Planning</li>
+        </ul>
+      </article>
+
+      <article class="service reveal d2">
+        <div class="num">03 — Modernization</div>
+        <h3>Digital Transformation &amp; <em>Legacy Modernization</em></h3>
+        <p class="svc-blurb">We rescue organizations from the burden of technical debt. We analyze your existing software footprint and create seamless pathways to modern, maintainable platforms.</p>
+        <div class="deliverables-label">Core Deliverables</div>
+        <ul>
+          <li>Technical Debt Assessment &amp; Code Quality Audits</li>
+          <li>Legacy System Refactoring &amp; Modernization Frameworks</li>
+          <li>Business Process Automation (BPA) Engineering</li>
+          <li>Agile &amp; Engineering Workflow Transformation</li>
+        </ul>
+      </article>
+
+      <article class="service reveal d3">
+        <div class="num">04 — Leadership</div>
+        <h3>Fractional CTO &amp; <em>Strategic Advisory</em></h3>
+        <p class="svc-blurb">Executive-level technical leadership without the overhead of a full-time hire. We guide your leadership team through fundraising, product launches, and strategic hiring.</p>
+        <div class="deliverables-label">Core Deliverables</div>
+        <ul>
+          <li>Technical Due Diligence for M&amp;A, Acquisitions, or VC Funding</li>
+          <li>Product Roadmap Validation &amp; Scoping</li>
+          <li>Security, Compliance &amp; Data Privacy Audits (ISO 27001, SOC2, GDPR)</li>
+          <li>Engineering Team Structuring &amp; Technical Interview Frameworks</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENT -->
+<section class="section engage" id="engage">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">Engagement — 02 / 04</div>
+      <div>
+        <h2 class="section-title">How we <em>engage</em>.</h2>
+        <p class="section-sub">Two models, both designed for objectivity. Our advisory operates independently of product development to guarantee unbiased counsel.</p>
+      </div>
+    </div>
+
+    <p class="objectivity reveal">
+      We do not sell what we recommend. Our advisory operates
+      <em>independently</em> of product development — guaranteeing absolute objectivity in every architectural decision we deliver.
+    </p>
+
+    <div class="engage-grid">
+
+      <div class="engage-card reveal">
+        <div class="tag">Model 01 — Sprint</div>
+        <h4>Strategic Scoping Sprint</h4>
+        <p>A fixed-fee, intensive diagnostic assessment that produces a ready-to-execute technical blueprint. We dive deep into your stack, your team, and your roadmap — and emerge with a document your engineers can build from on Day One.</p>
+        <div class="spec">
+          <span>2–4 Weeks</span>
+          <span>Fixed Fee</span>
+          <span>Blueprint Deliverable</span>
+        </div>
+      </div>
+
+      <div class="engage-card reveal d1">
+        <div class="tag">Model 02 — Retainer</div>
+        <h4>Retainer Advisory</h4>
+        <p>Ongoing monthly advisory access for governance, architecture reviews, and high-level technical guidance. Ideal for leadership teams who need a senior technical voice in the room — without committing to a permanent executive hire.</p>
+        <div class="spec">
+          <span>Monthly</span>
+          <span>Recurring</span>
+          <span>Architecture &amp; Governance</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="stamp reveal">— Begin an engagement</div>
+    <h2 class="reveal d1">Let's engineer your <em>next chapter.</em></h2>
+    <p class="lede reveal d2" style="color: var(--bone-dim); max-width: 620px;">
+      Whether you're scoping a migration, raising a round, or rethinking your engineering org — start with a conversation. We'll tell you straight whether we can help.
+    </p>
+    <div class="contact-row reveal d3">
+      <a href="mailto:hello@saahvan.com" class="cta-btn">hello@saahvan.com →</a>
+      <a href="mailto:advisory@saahvan.com" class="email">advisory@saahvan.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="legal">© 2026 Saahvan Solutions Private Limited — Andhra Pradesh, India</span>
+    <div class="anchor">
+      <a href="#advisory">Advisory</a>
+      <a href="#services">Services</a>
+      <a href="#engage">Engagement</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Lightweight reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
