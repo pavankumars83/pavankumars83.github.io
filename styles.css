@@ -444,6 +444,72 @@ nav.primary a:hover{ color: var(--bone); }
   .engage-grid{ grid-template-columns: 1fr; }
 }
 
+/* ---------- why saahvan grid ---------- */
+.why-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.why-card{
+  background: var(--ink);
+  padding: clamp(32px, 3vw, 44px) clamp(24px, 2.5vw, 36px);
+  position: relative;
+  transition: background .35s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}
+.why-card:hover{ background: var(--ink-2); }
+.why-card:hover .why-icon{ color: var(--accent-2); transform: translateY(-2px); }
+.why-icon{
+  color: var(--accent);
+  margin-bottom: 28px;
+  transition: color .3s ease, transform .3s ease;
+  width: 42px; height: 42px;
+}
+.why-icon svg{ width: 100%; height: 100%; display: block; }
+.why-num{
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--bone-faint);
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.why-card h3{
+  font-family: var(--serif);
+  font-weight: 300;
+  font-variation-settings: "opsz" 80;
+  font-size: clamp(22px, 1.9vw, 28px);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  color: var(--bone);
+  margin-bottom: 14px;
+}
+.why-card h3 em{
+  font-style: italic;
+  color: var(--accent-2);
+  font-variation-settings: "opsz" 80, "WONK" 1;
+}
+.why-card p{
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--bone-dim);
+  font-weight: 300;
+  margin-top: auto;
+}
+@media (max-width: 900px){
+  .why-grid{ grid-template-columns: repeat(2, 1fr); }
+  .why-card{ min-height: 280px; }
+}
+@media (max-width: 520px){
+  .why-grid{ grid-template-columns: 1fr; }
+  .why-card{ min-height: 0; }
+}
+
 /* ---------- CTA / contact ---------- */
 .contact{
   padding: clamp(100px, 16vh, 180px) 0;
